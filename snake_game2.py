@@ -34,9 +34,9 @@ class Snake:
         self.rect.center = [self.x, self.y]  # set the position of the head
         self.direction = [0, 0]
         self.time = 0
-        self.length = 2
+        self.length = 6
         #self.segments = [self.rect.copy()]  # add the head to the segments list
-        self.segments = []  # add the head to the segments list
+        self.segments = [self.rect]  # add the head to the segments list
 
         # initialize the positions of the remaining segments based on the head's position
         for i in range(self.length - 1):
@@ -66,15 +66,28 @@ class Snake:
 
     
     def move_snake(self):
-        #self.rect.move_ip(self.direction[0], self.direction[1])
+        # self.rect.move_ip(self.direction[0], self.direction[1])
 
         for i in range(len(self.segments)):
             index = len(self.segments) - i - 1
-            self.segments[i].move_ip(self.direction[0], self.direction[1])
             if index == 0:
                 self.segments[index].center = self.rect.center
+                # self.segments[i].move_ip(self.direction[0], self.direction[1])
             else:
                 self.segments[index].center = self.segments[index-1].center
+                # self.segments[i].move_ip(self.direction[0], self.direction[1])
+
+            # self.segments[i].move_ip(self.direction[0], self.direction[1])
+
+            # if self.segments[0].center == self.segments[i].center:
+            #     self.segments[i].move_ip(self.direction[0], self.direction[1])
+            
+            # self.segments[i].move_ip(self.direction[0], self.direction[1])
+        
+
+        for segment in self.segments:
+            segment.move_ip(self.direction[0], self.direction[1])
+            
 
         self.segments.append(self.rect.copy())
         self.segments = self.segments[-self.length:]

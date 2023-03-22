@@ -35,13 +35,7 @@ class Snake:
         self.direction = [0, 0]
         self.time = 0
         self.length = 1
-        self.segments = [self.rect.copy()]  # add the head to the segments list
-
-        # initialize the positions of the remaining segments based on the head's position
-        for i in range(self.length - 1):
-            segment_rect = pygame.rect.Rect([0, 0, tile_size - 2, tile_size - 2])
-            segment_rect.center = [self.x - (i + 1) * tile_size, self.y]
-            self.segments.append(segment_rect)
+        self.segments = []  # add the head to the segments list
 
     def draw(self):
         [pygame.draw.rect(screen, 'green', segment) for segment in self.segments]
@@ -49,7 +43,8 @@ class Snake:
     
     def control_snake(self, event):
         if event.type == pygame.QUIT:
-            done = True
+            # done = True
+            print(4)
 
         elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
