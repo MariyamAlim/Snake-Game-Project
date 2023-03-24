@@ -42,7 +42,7 @@ class Snake:
         # pygame.draw.self.rect(screen, GREEN, (self.x, self.y, self.width, self.height))
     
     def control_snake(self, event):
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT: # window not closing when pressing close window, fix this
             # done = True
             print(4)
 
