@@ -32,10 +32,12 @@ class Snake:
     
         self.rect = pygame.rect.Rect([0, 0, tile_size - 2, tile_size - 2])
         self.rect.center = [self.x, self.y]  # set the position of the head
+        self.body = pygame.Surface((tile_size, tile_size))
+        self.body.fill(GREEN)
         self.direction = [0, 0]
         self.time = 0
         self.length = 6
-        #self.segments = [self.rect.copy()]  # add the head to the segments list
+
         self.segments = [self.rect]  # add the head to the segments list
 
         # initialize the positions of the remaining segments based on the head's position
@@ -45,12 +47,14 @@ class Snake:
             self.segments.append(segment_rect)
 
     def draw(self):
-        [pygame.draw.rect(screen, 'green', segment) for segment in self.segments]
+        #[pygame.draw.rect(screen, 'green', segment) for segment in self.segments]
+        for segment in self.segments:
+            screen.blit(self.body, segment)
         # pygame.draw.self.rect(screen, GREEN, (self.x, self.y, self.width, self.height))
     
     def control_snake(self, event):
         if event.type == pygame.QUIT:
-            done = True
+            quit()
             
         elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
@@ -63,38 +67,24 @@ class Snake:
                     self.direction = [0, 1]
                 elif event.key == pygame.K_q:
                     pygame.quit()
+                    quit()
 
     
     def move_snake(self):
-        # self.rect.move_ip(self.direction[0], self.direction[1])
+        self.rect.move_ip(self.direction[0] * tile_size, self.direction[1] * tile_size)
 
         for i in range(len(self.segments)):
             index = len(self.segments) - i - 1
             if index == 0:
                 self.segments[index].center = self.rect.center
-                # self.segments[i].move_ip(self.direction[0], self.direction[1])
             else:
-                self.segments[index].center = self.segments[index-1].center
-                # self.segments[i].move_ip(self.direction[0], self.direction[1])
+                self.segments[index].center = self.segments[index - 1].center
 
-            # self.segments[i].move_ip(self.direction[0], self.direction[1])
-
-            # if self.segments[0].center == self.segments[i].center:
-            #     self.segments[i].move_ip(self.direction[0], self.direction[1])
-            
-            # self.segments[i].move_ip(self.direction[0], self.direction[1])
-        
-
-        for segment in self.segments:
-            segment.move_ip(self.direction[0], self.direction[1])
-            
-
-        self.segments.append(self.rect.copy())
-        self.segments = self.segments[-self.length:]
-
+    
+    
     def eat_prey(self):
+        self.length += 1
         self.segments.append(self.rect.copy())
-        self.segments = self.segments[-self.length:]
 
 
 
@@ -102,10 +92,6 @@ clock = pygame.time.Clock()
 
 pygame.init()
 
-# win_width = 800
-# win_height = 800
-
-#screen = pygame.display.set_mode((win_width, win_height))  # Top left corner is (0,0)
 pygame.display.set_caption('Snake')
 
 # create snake
@@ -123,13 +109,6 @@ while not done:
     snake.draw()
     pygame.display.update()
 
-    clock.tick(60)
-#     status = True
-# while (status):
+    clock.tick(10)
 
-#     for i in pygame.event.get():
-
-#         if i.type == pygame.QUIT:
-#             status = False
- 
 pygame.quit()
