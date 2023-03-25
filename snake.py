@@ -14,6 +14,7 @@ class Snake:
         self.x = x
         self.y = y
     
+        self.screen = screen
         self.rect = pygame.rect.Rect([0, 0, tile_size - 2, tile_size - 2])
         self.rect.center = [self.x, self.y]  # set the position of the head
         self.direction = [0, 0]
@@ -28,7 +29,7 @@ class Snake:
             self.segments.append(segment_rect)
 
     def draw(self):
-        [pygame.draw.rect(screen, GREEN, segment) for segment in self.segments]
+        [pygame.draw.rect(self.screen, GREEN, segment) for segment in self.segments]
     
     def control_snake(self, event):
         if event.type == pygame.KEYDOWN:
