@@ -24,8 +24,9 @@ pygame.init()
 pygame.display.set_caption("Snake Game")
 
 food = Prey(0.0, win_width, win_height, tile_size, RED)
+poison = Prey(0.05, win_width, win_height, tile_size, BLUE)
 
-snake = Snake(win_width//2, win_height//2, food, tile_size)
+snake = Snake(win_width//2, win_height//2, food, poison, tile_size)
 
 done = False
 

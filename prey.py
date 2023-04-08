@@ -13,19 +13,10 @@ class Prey:
 
 
     def get_random_pos(self, win_width, win_height):
-        valid_pos = False
-        while not valid_pos:
-
-            x_range = (self.v * self.tile_size, win_width - self.v * self.tile_size - self.tile_size)
-            y_range = (self.v * self.tile_size, win_height - self.v * self.tile_size - self.tile_size)
-
-            x = random.uniform(*x_range)
-            y = random.uniform(*y_range)
-
-            if x >= 0 and x <= (win_width - self.tile_size) and y >= 0 and y <= (win_height - self.tile_size):
-                valid_pos = True
-
-        return np.array([x, y])
+        x = random.randint(self.tile_size//2, win_width-self.tile_size//2)
+        y = random.randint(self.tile_size//2, win_height-self.tile_size//2)
+        
+        return (x//self.tile_size)*self.tile_size + self.tile_size//2,  (y//self.tile_size)*self.tile_size + self.tile_size//2
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)

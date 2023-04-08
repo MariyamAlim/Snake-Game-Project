@@ -6,11 +6,12 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 class Snake:
-    def __init__(self, x, y, prey, tile_size):
+    def __init__(self, x, y, prey, prey2, tile_size):
         self.x = x
         self.y = y
 
         self.prey = prey
+        self.prey2 = prey2
         # self.tile_size = self.prey.v *tile_size
         self.v = 0.7
         self.tile_size = tile_size
@@ -35,13 +36,13 @@ class Snake:
         pygame.draw.rect(screen, color, self.rect)
         self.prey.draw(screen)
 
-        font = pygame.font.Font('freesansbold.ttf', 20)
+        if self.score > 3:
+            self.prey2.draw(screen)
 
+        font = pygame.font.Font('freesansbold.ttf', 20)
         text = font.render("Score: " + str(self.score), True, BLACK, None)
-        # # textRect = text.get_rect()
-        # # textRect.center = (100, 100)
         screen.blit(text, [10, 10])
-        # screen.draw.text("hello world", (100, 100), fontname="Viga", fontsize=32)
+
 
 # fixed the display of 2 rect issue
 # vx was set to the tile size (width of each square)
@@ -97,10 +98,20 @@ class Snake:
     def eat_prey(self, win_width, win_height):
         if (self.prey.rect.x - self.rect.x)**2 <= (self.tile_size/2)**2 and (self.prey.rect.y - self.rect.y)**2 <= (self.tile_size/2)**2:
             self.prey.rect.center = self.prey.get_random_pos(win_width, win_height)
+            if self.v <= 0.8:
+                self.v += self.prey.v
             self.body.append((self.x - self.length * self.tile_size, self.y))
             self.length +=1
-            self.v += self.prey.v
             self.score += 1
+
+        if (self.prey2.rect.x - self.rect.x)**2 <= (self.tile_size/2)**2 and (self.prey2.rect.y - self.rect.y)**2 <= (self.tile_size/2)**2:
+            self.prey2.rect.center = self.prey2.get_random_pos(win_width, win_height)
+            if self.v <= 0.8:
+                self.v += self.prey2.v
+            self.body.append((self.x - self.length * self.tile_size, self.y))
+            self.length +=1
+            self.score += 1
+
 
     def check_event(self, win_width, win_height):
         if self.check_boundary(win_width, win_height) == True or self.self_eating() == True:
