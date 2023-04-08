@@ -36,7 +36,7 @@ class Snake:
         pygame.draw.rect(screen, color, self.rect)
         self.prey.draw(screen)
 
-        if self.score > 3:
+        if self.score > 15:
             self.prey2.draw(screen)
 
         font = pygame.font.Font('freesansbold.ttf', 20)
@@ -106,11 +106,11 @@ class Snake:
 
         if (self.prey2.rect.x - self.rect.x)**2 <= (self.tile_size/2)**2 and (self.prey2.rect.y - self.rect.y)**2 <= (self.tile_size/2)**2:
             self.prey2.rect.center = self.prey2.get_random_pos(win_width, win_height)
-            if self.v <= 0.8:
+            if self.v <= 0.85:
                 self.v += self.prey2.v
             self.body.append((self.x - self.length * self.tile_size, self.y))
             self.length +=1
-            self.score += 1
+            self.score -= 1
 
 
     def check_event(self, win_width, win_height):
