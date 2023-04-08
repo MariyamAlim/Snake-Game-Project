@@ -1,62 +1,58 @@
 import numpy as np
-import random
 import pygame
+import time
+from snake_game3 import *
 
-import snake as Snake
-# import prey as Prey
-
-WHITE = (255, 255, 255)
+# set up the colors
 BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+
+#constant
+tile_size = 30
+win_width = 800
+win_height = 550
+
+screen = pygame.display.set_mode((win_width, win_height))
+
+clock = pygame.time.Clock()
 
 pygame.init()
 
-class Game:
-    def __init__(self):
+pygame.display.set_caption("Snake Game")
 
-        self.win_width = 750    # screen width
-        self.tile_size = 50     # tile size
-        self.screen = pygame.display.set_mode([self.win_width, self.win_width]) # screen
-        self.color = self.screen.fill(WHITE)                                    # screen background
-        self.title = pygame.display.set_caption("Snake Game")
+food = Prey(0.0, win_width, win_height, tile_size, RED)
 
-        self.snake = Snake.Snake(0, 0, self.tile_size, self.screen) # initialize snake instance
-        # self.prey = Prey.Prey() # initialize prey instance
- 
-    def grid(self):
-        for x in range(self.win_width):
-            for y in range(self.win_width):
-                rect = pygame.Rect(x * self.tile_size, y*self.tile_size, self.tile_size, self.tile_size)
-                pygame.draw.rect(self.screen, BLACK, rect, 1)
-        pygame.display.update()
+snake = Snake(win_width//2, win_height//2, food, tile_size)
 
-    def draw(self):
-        self.snake.draw()
+done = False
 
-    def update(self): # updates display, snake and food
-        pass
-
-    def check_boundary(self, event): # checks boundary conditions: snake ate food, snake collided with itself, snake collided with window boundaries
-        self.snake.control_snake(event)
-
-    def reset(self): # resets game
-        pass
-
-    def run(self, event): # game runs in this function
-        self.check_boundary(event)
-        self.update()
-        self.draw()
-
-
-game = Game()
-running = True
-  
-# game loop
-while running:
-    # game.grid()
-
+while not done:
     for event in pygame.event.get():
-
-        game.run(event)
-
         if event.type == pygame.QUIT:
-            running = False
+            done = True
+        snake.control_snake(event)
+
+    if snake.check_event(win_width, win_height) == True:
+        font = pygame.font.Font('freesansbold.ttf', 30)
+        text = font.render("GAME OVER", True, BLACK, None)
+        screen.blit(text, [300, 225])
+        pygame.display.update()
+        time.sleep(2)
+        done = True
+
+    snake.eat_prey(win_width, win_height)
+
+    snake.move_snake()
+
+    screen.fill(WHITE)
+
+    snake.draw(screen, GREEN)
+
+    pygame.display.update()
+
+    clock.tick(10)
+
+pygame.quit()
