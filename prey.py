@@ -11,7 +11,7 @@ class Prey:
 
     """
     init initilizes the prey object with the following:
-        - v is the speed with which the snake's speed changes if prey is consumed
+        - v is the velocity with which the snake's velocity changes if prey is consumed
         - tile_size is size of prey tile
         - color is well color of prey
     """
