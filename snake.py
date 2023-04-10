@@ -46,7 +46,7 @@ class Snake:
     draw method draws the following:
     - the snake
     - the 1st prey object
-    - the 2nd pray object once the score reaches 15
+    - the 2nd pray object once the score reaches 10
     - the score
     """
     def draw(self, screen, color):
@@ -57,7 +57,7 @@ class Snake:
         pygame.draw.rect(screen, color, self.rect)
         self.prey.draw(screen)
 
-        if self.score > 15:
+        if self.score > 10:
             self.prey2.draw(screen)
 
         font = pygame.font.Font('freesansbold.ttf', 20)
