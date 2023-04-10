@@ -10,8 +10,8 @@ import random
 class Prey:
 
     """
-    init initilizes the object with the following:
-        - v is velocity of prey
+    init initilizes the prey object with the following:
+        - v is the speed with which the snake's speed changes if prey is consumed
         - tile_size is size of prey tile
         - color is well color of prey
     """
@@ -28,20 +28,13 @@ class Prey:
         self.rect.center = self.get_random_pos(win_width, win_height)
 
     """
-    draw method takes the screen parameter and draws the prey onto the screen using pygame.draw.rect
-    in pygame.draw.rect the 3 arguments do the following:
-        - screen draws the prey object int
-        - the self.color will color the prey
-        - the self.rect will shape the prey into a rectangle
+    draw method draws the prey object onto the screen
     """
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
 
     """
-    get_random_pos method will cause the prey to randomly appear in different places
-    on the game screen
-    the method takes the parameter win_width for the width of the window and the parameter
-    win_height for the height of the window
+    get_random_pos method will generate a random position for the prey object
     """    
     def get_random_pos(self, win_width, win_height):
         # np.random.randint creates two random coordinates for x and y
@@ -57,5 +50,5 @@ class Prey:
         on the grid of tiles
         """
         # the following '+ self.tile_size // 2' will shift the position of the prey by 
-        #half a tile so that the prey is centered within the corresponding tile
+        # half a tile so that the prey is centered within the corresponding tile
         return (x // self.tile_size) * self.tile_size + self.tile_size // 2, (y // self.tile_size) * self.tile_size + self.tile_size // 2
