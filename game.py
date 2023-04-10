@@ -1,7 +1,7 @@
 import numpy as np
 import pygame
 import time
-from snake_game3 import *
+from snake import *
 
 # set up the colors
 BLACK = (0, 0, 0)
