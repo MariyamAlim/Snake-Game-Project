@@ -1,7 +1,10 @@
 import numpy as np
 import pygame
 import time
+import sys
+
 from snake import *
+from computer_snake import *
 
 # set up the colors
 BLACK = (0, 0, 0)
@@ -145,7 +148,50 @@ def easy_mode():
         clock.tick(10)
 
 def difficult_mode():
-    pass
+
+    pygame.display.set_caption("Snake Game")
+    
+    food = Prey(0.0, win_width, win_height, tile_size, GREEN)
+    poison = Prey(0.05, win_width, win_height, tile_size, RED)
+    snake = Snake(win_width//2, win_height//2, food, poison, tile_size)
+    comp_snake = Computer_Snake(200, 200, tile_size, snake)
+
+    screen.fill(WHITE)
+
+    done = False
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                comp_snake.control_snake(event)
+            if event.type == pygame.QUIT:
+                # user clicked on the close button
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    # user pressed the "q" key
+                    pygame.quit()
+                    sys.exit()
+
+        comp_snake.check_boundary(win_width, win_height)
+
+        if comp_snake.check_event(win_width, win_height) == True:
+            font = pygame.font.Font('freesansbold.ttf', 30)
+            text = font.render("GAME OVER", True, BLACK, None)
+            screen.blit(text, [300, 225])
+            pygame.display.update()
+            time.sleep(2)
+            done = True
+
+        comp_snake.eat_prey(win_width, win_height)
+        comp_snake.move_snake()
+
+        screen.fill(WHITE)
+
+        comp_snake.draw(screen, BLUE)
+        pygame.display.update()
+
+        clock.tick(10)
 
 game_intro()
 
