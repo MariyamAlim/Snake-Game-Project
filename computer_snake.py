@@ -2,7 +2,7 @@ import numpy as np
 import pygame
 import random
 
-from snake_game3 import *
+from snake import *
 
 BLACK = (0, 0, 0)
 BROWN = (150, 75, 0)
