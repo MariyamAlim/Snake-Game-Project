@@ -24,7 +24,7 @@ mode = ""
 clock = pygame.time.Clock()
 
 pygame.init()
-
+# will be used to show text on game screen by taking 5 arguments
 def display_text(surface, text, pos, font, color):
     collection = [word.split(' ') for word in text.splitlines()]
     space = font.size(' ')[0]
@@ -40,28 +40,34 @@ def display_text(surface, text, pos, font, color):
             x += word_width + space
         x = pos[0]
         y += word_height
-
+#this will explain the rules of the game on the screen
 def game_intro():
 
     intro = """Welcome to snake game! Here are the rules of the game:
-
 
     1) Use WASD keys to control the snake.
 
     2) Consume the green prey to increase your score.
 
-    3) If score increases over 10, poisonous prey will start appearing which will increase your speed.
-    It won't increase your score.
+    3) If score increases over 10, poisonous prey (red) will start appearing which 
+       will increase your speed.
+       It won't increase your score.
 
     4) If your snake hits window boundaries, its game over.
 
     5) If your snake eats itself, its game over.
 
     But thats just the easy mode.
-    If you're up for a challenge, select difficult mode and play with a computer
-    controlled snake.
+    
+    If you're up for a challenge, select difficulty mode and play with a computer
+    controlled snake that will appear in blue. 
+
+    When the blue snake consumes a green prey, it will grow in size. 
+    If it consumes the red prey, it will speed up.
 
     Select difficulty mode in the next window.
+
+    Game will begin shortly...
     """
 
     font = pygame.font.SysFont("freesansbold.ttf", 30)
@@ -70,9 +76,9 @@ def game_intro():
     pygame.display.update()
     time.sleep(30)
     return
-
+#will show a menu where the user can select to play in easy mode or difficulty mode
 def set_mode(screen):
-
+    # this will allow mode to be accessed outside of set_mode
     global mode
 
     font = pygame.font.SysFont("freesansbold.ttf", 30)
@@ -80,6 +86,8 @@ def set_mode(screen):
     # Display menu options
     easy_mode = font.render("Enter 'e' for easy mode", True, DGREEN)
     hard_mode = font.render("Enter 'h' for hard mode", True, DGREEN)
+    # 2 rectangles are defined for the menu options and they will be centered on the screen
+    # using get_rect() & center
     object_easy = easy_mode.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 - 50))
     object_hard = hard_mode.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 + 50))
 
