@@ -79,6 +79,7 @@ def game_intro():
     pygame.display.update()
     time.sleep(30)
     return
+
 #will show a menu where the user can select to play in easy mode or difficulty mode
 def set_mode(screen):
     # this will allow mode to be accessed outside of set_mode
