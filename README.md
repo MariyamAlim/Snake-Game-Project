@@ -22,7 +22,7 @@ To select easy mode press the e key, to select hard mode press the h key
     - W - moves the snake up
     - A - moves the snake left
     - S - moves the snake down
-    - D - moves the snake right
+    - D - moves the snake right <br>
 You must control the snake to get it to consume the prey (green) and when it does the snake will increase in size by 1 everytime.
 If you let the snake hit the window boundaries or you end up running the snake into itself, it will be game over and the window will close. 
 
