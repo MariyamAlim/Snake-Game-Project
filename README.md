@@ -16,7 +16,8 @@ When the game starts the first screen you will see is the rules of the game.You 
 The next screen will give you the option to select easy or hard. <br>
 
 To select easy mode press the e key, to select hard mode press the h key
-  - The snake in brown will start going towards the left automatically
+  - The snake (brown) in brown will start going towards the left automatically
+  - The prey (green) will also appear in a random spot
   - Use the WASD keys to change directions for the snake
     - W - moves the snake up
     - A - moves the snake left
