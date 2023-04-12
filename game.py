@@ -114,6 +114,8 @@ def set_mode(screen):
 
             pygame.display.update()
 
+# game loop for easy mode
+# it loads the snake object with two preys
 def easy_mode():
     pygame.display.set_caption("Snake Game")
 
@@ -148,6 +150,8 @@ def easy_mode():
 
         clock.tick(10)
 
+# game loop for easy mode
+# it loads the computer_snake object with the user-controlled snake
 def difficult_mode():
 
     pygame.display.set_caption("Snake Game")
@@ -194,10 +198,13 @@ def difficult_mode():
 
         clock.tick(10)
 
+# display the rules screen
 game_intro()
 
+# display the select mode screen
 set_mode(screen)
 
+# call the game loop based on user input
 if mode == "easy":
     easy_mode()
 else:
