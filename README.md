@@ -4,11 +4,11 @@ This project is a game called snake, written in Python and uses the Pygame libra
 
 # Installation Instructions:
 
-Install pygame <br>
-Clone the repositary <br>
-Run game.py <br>
-OR <br>
-You can run it in terminal using python game.py or python3 game.py
+- Install pygame
+
+- Clone the repository
+
+- Run game.py in the terminal using python game.py or your choice of IDE
 
 # How To Play the Game
 When the game starts the first screen you will see is the rules of the game.You will have 30 secs to read them before the game moves on to the next screen. <br>
