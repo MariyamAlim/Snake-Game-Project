@@ -5,6 +5,9 @@ This project is a game called snake, written in Python and uses the Pygame libra
 #Installation Instructions:
 
 Install pygame <br>
-Clone the repositary
-Run game.py or you can run it in terminal using python game.py or python3 game.py
+Clone the repositary <br>
+
+Run game.py <br>
+OR <br>
+You can run it in terminal using python game.py or python3 game.py
 
