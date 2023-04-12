@@ -34,6 +34,7 @@ If you let the snake hit the window boundaries or you end up running the snake i
 ## Hard Mode
 To select hard mode press the h key
   - The snake (brown) in brown will start going towards the left automatically
+  - A computer controlled snake (blue) will also automatically appear and move around the screen randomly
   - The prey (green) will also appear in a random spot
   - Use the WASD keys to change directions for the snake
     - W - moves the snake up
@@ -41,5 +42,9 @@ To select hard mode press the h key
     - S - moves the snake down
     - D - moves the snake right <br>
 
-You must control the snake to get it to consume the prey (green) and when it does the snake will increase in size by 1 everytime.
-If you let the snake hit the window boundaries or you end up running the snake into itself, it will be game over and the window will close. 
+You must control the snake (brown) to get it to consume the prey (green) and when it does the snake (brown) will increase in size by 1 everytime and so will the score. If snake (blue) consumes prey(green) it will also grow in size.
+
+When the score is greater then 10, a new prey (red) will appear where if the snake(brown) consumes it then its speed will increase. If the snake(brown) keeps consuming the prey (red) then the speed will keep increasing. If snake(blue) consumes the prey(red) its speed will also incease.
+
+
+If you let the snake (brown) hit the window boundaries, or you end up running the snake into itself, or it hits snake(blue) it will be game over and the window will close.
